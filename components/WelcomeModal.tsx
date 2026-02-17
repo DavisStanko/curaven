@@ -40,14 +40,14 @@ export function WelcomeModal() {
           <div className="flex items-center justify-center gap-2.5 pt-2">
             <Image
               src="/icon.png"
-              alt="Curaven logo"
+              alt="cuRaven logo"
               width={28}
               height={28}
               className="rounded-sm"
               priority
             />
             <DialogTitle className="text-2xl font-bold tracking-tight text-white">
-              Welcome to Curaven.
+              Welcome to cuRaven.
             </DialogTitle>
           </div>
         </DialogHeader>

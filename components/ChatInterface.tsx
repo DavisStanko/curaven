@@ -21,6 +21,8 @@ type Message = {
   profiles: {
     username: string;
   } | null;
+  author_name?: string;
+  is_system_message?: boolean;
 };
 
 export function ChatInterface() {
@@ -94,9 +96,16 @@ export function ChatInterface() {
     if (!newMessage.trim() || !user) return;
 
     setIsSending(true);
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("username")
+      .eq("id", user.id)
+      .single();
+
     const { error } = await supabase.from("messages").insert({
       content: newMessage,
       user_id: user.id,
+      author_name: profile?.username || "Unknown",
     });
 
     if (error) {
@@ -110,21 +119,27 @@ export function ChatInterface() {
   return (
     <div className="flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden">
       <ScrollArea ref={scrollRef} className="min-h-0 flex-1 w-full">
-        <div className="flex flex-col px-2 py-2 font-mono tracking-tight">
+      <div className="flex flex-col px-2 py-2 font-mono tracking-tight gap-1">
           {messages.map((msg) => (
             <div
               key={msg.id}
-              className="rounded-sm px-2 py-0.5 text-base leading-relaxed font-mono hover:bg-white/5 break-words"
+              className={`rounded-sm px-2 py-0.5 text-base leading-relaxed font-mono hover:bg-white/5 break-words ${
+                msg.is_system_message ? "text-white/40 italic" : ""
+              }`}
             >
-              <span
-                className="font-bold mr-2"
-                style={{
-                  color: stringToColor(msg.profiles?.username || "Unknown"),
-                }}
-              >
-                {msg.profiles?.username || "Unknown"}:
+              {!msg.is_system_message && (
+                <span
+                  className="font-bold mr-2"
+                  style={{
+                    color: stringToColor(msg.author_name || msg.profiles?.username || "Unknown"),
+                  }}
+                >
+                  {msg.author_name || msg.profiles?.username || "Unknown"}:
+                </span>
+              )}
+              <span className={msg.is_system_message ? "" : "text-white/90"}>
+                {msg.content}
               </span>
-              <span className="text-white/90">{msg.content}</span>
             </div>
           ))}
         </div>

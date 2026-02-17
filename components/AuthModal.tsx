@@ -85,6 +85,20 @@ export function AuthModal() {
 
   async function onSignup(values: z.infer<typeof signupSchema>) {
     setIsLoading(true)
+
+    // Check if username is already taken
+    const { data: existingUser } = await supabase
+      .from('profiles')
+      .select('username')
+      .eq('username', values.username)
+      .maybeSingle()
+
+    if (existingUser) {
+      toast.error('That username is already taken')
+      setIsLoading(false)
+      return
+    }
+
     const { error } = await supabase.auth.signUp({
       email: values.email,
       password: values.password,

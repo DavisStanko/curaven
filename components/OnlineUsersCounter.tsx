@@ -115,9 +115,9 @@ export function OnlineUsersCounter() {
 
   return (
     <div className="flex select-none items-center gap-1.5 whitespace-nowrap text-[11px] text-white/70 sm:gap-2 sm:text-xs">
-      <span className="text-emerald-300">{counts.loggedIn} logged in</span>
+      <span className="text-emerald-300">{counts.loggedIn} Ravens </span>
       <span className="text-white/40">•</span>
-      <span className="text-amber-300">{counts.watching} watching</span>
+      <span className="text-amber-300">{counts.watching} Lurking </span>
     </div>
   );
 }

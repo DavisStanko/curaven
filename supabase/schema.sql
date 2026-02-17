@@ -25,7 +25,9 @@ create table messages (
   id uuid default gen_random_uuid() primary key,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null,
   content text not null,
-  user_id uuid references profiles(id) not null
+  user_id uuid references profiles(id) not null,
+  author_name text,
+  is_system_message boolean default false
 );
 
 -- Set up RLS for messages

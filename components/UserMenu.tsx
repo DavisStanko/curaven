@@ -81,6 +81,13 @@ export function UserMenu() {
       setUsername(trimmed)
       toast.success('Display name updated!')
       setIsEditing(false)
+
+      await supabase.from('messages').insert({
+        content: `${username} is now known as ${trimmed}`,
+        user_id: user!.id,
+        author_name: 'System',
+        is_system_message: true,
+      })
     }
 
     setIsSaving(false)
