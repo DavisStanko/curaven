@@ -116,7 +116,7 @@ export function ChatInterface() {
               key={msg.id}
               className="flex items-start gap-2 rounded-sm px-2 py-1 text-base leading-relaxed font-mono hover:bg-white/5"
             >
-              <span className="shrink-0 select-none text-sm text-white/40">
+              <span className="w-22 shrink-0 select-none text-right text-sm tabular-nums text-white/40">
                 {format(new Date(msg.created_at), "h:mm a").toLowerCase()}
               </span>
               <span

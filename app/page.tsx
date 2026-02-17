@@ -2,6 +2,7 @@
 
 import { AuthModal } from "@/components/AuthModal";
 import { ChatInterface } from "@/components/ChatInterface";
+import { OnlineUsersCounter } from "@/components/OnlineUsersCounter";
 import { useAuth } from "@/components/AuthProvider";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
@@ -14,8 +15,13 @@ export default function Home() {
     <main className="flex min-h-screen items-stretch justify-center px-3 sm:px-4">
       <div className="flex h-dvh w-full max-w-3xl flex-col overflow-hidden border border-white/10 bg-black/60 shadow-2xl backdrop-blur-sm">
         {/* Header */}
-        <header className="sticky top-0 z-10 flex h-10 w-full items-center justify-between border-b border-white/10 bg-black/20 px-3">
-          <h1 className="flex items-center gap-2 text-sm font-bold tracking-tight text-white font-sans">
+        <header className="sticky top-0 z-10 grid h-10 w-full grid-cols-[1fr_auto_1fr] items-center border-b border-white/10 bg-black/20 px-3">
+          <div className="justify-self-start">
+            <OnlineUsersCounter />
+          </div>
+
+          <h1 className="flex items-center gap-2 text-sm font-bold tracking-tight text-white font-sans justify-self-center">
+            <span>cuRaven</span>
             <Image
               src="/icon.png"
               alt="cuRaven logo"
@@ -24,9 +30,9 @@ export default function Home() {
               className="rounded-sm"
               priority
             />
-            <span>cuRaven</span>
           </h1>
-          <div className="flex items-center">
+
+          <div className="flex items-center justify-self-end">
             {user ? (
               <Button
                 variant="ghost"
