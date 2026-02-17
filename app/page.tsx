@@ -14,8 +14,8 @@ export default function Home() {
   return (
     <>
       <WelcomeModal />
-    <main className="flex min-h-screen items-stretch justify-center px-3 sm:px-4">
-      <div className="flex h-dvh w-full max-w-3xl flex-col overflow-hidden border border-white/10 bg-black/60 shadow-2xl backdrop-blur-sm">
+    <main className="flex min-h-screen items-stretch justify-center sm:px-4">
+      <div className="flex h-dvh w-full max-w-3xl flex-col overflow-hidden border-x-0 border-y border-white/10 bg-black/60 shadow-2xl backdrop-blur-sm sm:border-x">
         {/* Header */}
         <header className="sticky top-0 z-10 grid h-12 w-full grid-cols-[1fr_auto_1fr] items-center border-b border-white/10 bg-black/20 px-3">
           <div className="justify-self-start">

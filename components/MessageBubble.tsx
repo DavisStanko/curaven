@@ -31,9 +31,9 @@ export function MessageBubble({ content, isOwnMessage, username, timestamp }: Me
         )}
       >
         {!isOwnMessage && (
-            <div className="flex items-baseline gap-2 mb-1">
+            <div className="flex items-baseline mb-1 gap-2 justify-between sm:justify-start">
                 <span className="text-xs font-bold text-white/80 tracking-tight">{username}</span>
-                <span className="text-[10px] text-white/40">{format(new Date(timestamp), 'h:mm a')}</span>
+                <span className="text-[10px] text-white/40 sm:order-none">{format(new Date(timestamp), 'h:mm a')}</span>
             </div>
         )}
         

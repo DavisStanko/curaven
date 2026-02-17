@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { ImageIcon } from "lucide-react";
 
 const BACKGROUND_IMAGES: string[] = [
   "/bg/20191108_124057-1251675282.jpg",
@@ -58,12 +59,15 @@ export function BackgroundLayer({
       <Button
         type="button"
         size="sm"
-        variant="secondary"
+        variant="ghost"
         onClick={handleChangeBackground}
-        className="fixed bottom-3 right-3 z-20 h-7 border border-white/20 bg-black/40 px-2 text-[11px] text-white hover:bg-black/55"
+        className="fixed bottom-3 right-3 z-20 h-8 gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 text-[11px] text-white/60 backdrop-blur-md hover:bg-black/60 hover:text-white/90 sm:px-3"
+        title="Change background"
       >
-        Change Background
+        <ImageIcon className="h-3.5 w-3.5" />
+        <span className="hidden sm:inline">BG</span>
       </Button>
     </>
   );
 }
+
