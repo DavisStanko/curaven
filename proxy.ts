@@ -1,14 +1,14 @@
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   let response = NextResponse.next({
     request: {
       headers: request.headers,
     },
   });
 
-  // refesh auth session
+  // refresh auth session
   try {
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -35,10 +35,9 @@ export async function middleware(request: NextRequest) {
     // This will refresh session if expired - required for Server Components
     // https://supabase.com/docs/guides/auth/server-side/nextjs
     await supabase.auth.getUser();
-  } catch (e) {
+  } catch {
     // If there is an error (e.g. Supabase is down), we want to proceed
     // The user will just be unauthenticated
-    // console.error('Middleware auth error:', e)
   }
 
   return response;
