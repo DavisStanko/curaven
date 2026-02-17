@@ -3,15 +3,17 @@
 import { AuthModal } from "@/components/AuthModal";
 import { ChatInterface } from "@/components/ChatInterface";
 import { OnlineUsersCounter } from "@/components/OnlineUsersCounter";
+import { UserMenu } from "@/components/UserMenu";
+import { WelcomeModal } from "@/components/WelcomeModal";
 import { useAuth } from "@/components/AuthProvider";
-import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
 
   return (
+    <>
+      <WelcomeModal />
     <main className="flex min-h-screen items-stretch justify-center px-3 sm:px-4">
       <div className="flex h-dvh w-full max-w-3xl flex-col overflow-hidden border border-white/10 bg-black/60 shadow-2xl backdrop-blur-sm">
         {/* Header */}
@@ -33,20 +35,7 @@ export default function Home() {
           </h1>
 
           <div className="flex items-center justify-self-end">
-            {user ? (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={signOut}
-                title="Sign Out"
-                className="h-7 px-2 text-xs text-white/80 hover:bg-white/10 hover:text-white"
-              >
-                <LogOut className="mr-1 h-3.5 w-3.5" />
-                Log Out
-              </Button>
-            ) : (
-              <AuthModal />
-            )}
+            {user ? <UserMenu /> : <AuthModal />}
           </div>
         </header>
 
@@ -54,5 +43,6 @@ export default function Home() {
         <ChatInterface />
       </div>
     </main>
+    </>
   );
 }
