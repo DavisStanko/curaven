@@ -33,7 +33,7 @@ export function MessageBubble({ content, isOwnMessage, username, timestamp }: Me
         {!isOwnMessage && (
             <div className="flex items-baseline gap-2 mb-1">
                 <span className="text-xs font-bold text-white/80 tracking-tight">{username}</span>
-                <span className="text-[10px] text-white/40">{format(new Date(timestamp), 'HH:mm')}</span>
+                <span className="text-[10px] text-white/40">{format(new Date(timestamp), 'h:mm a')}</span>
             </div>
         )}
         
@@ -43,7 +43,7 @@ export function MessageBubble({ content, isOwnMessage, username, timestamp }: Me
 
         {isOwnMessage && (
              <div className="text-[10px] text-white/50 text-right mt-1 select-none">
-                {format(new Date(timestamp), 'HH:mm')}
+                {format(new Date(timestamp), 'h:mm a')}
              </div>
         )}
       </div>
