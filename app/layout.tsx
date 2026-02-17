@@ -19,6 +19,15 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+  themeColor: "#000000",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -27,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(inter.className, "min-h-screen font-sans antialiased")}
+        className={cn(inter.className, "h-full font-sans antialiased")}
       >
         <BackgroundLayer backgroundImage="/bg/bg.jpg" />
         <AuthProvider>

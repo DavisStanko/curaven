@@ -145,7 +145,7 @@ export function ChatInterface() {
         </div>
       </ScrollArea>
 
-      <div className="w-full border-t border-white/10 bg-black/20 px-3 py-2">
+      <div className="w-full border-t border-white/10 bg-black/20 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
         {user ? (
           <form
             onSubmit={handleSendMessage}
