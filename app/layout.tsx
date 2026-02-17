@@ -5,7 +5,7 @@ import { AuthProvider } from "@/components/AuthProvider";
 import { BackgroundLayer } from "@/components/BackgroundLayer";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -55,8 +55,8 @@ export default function RootLayout({
         <AuthProvider>
           {children}
           <Toaster />
-          <Analytics />
         </AuthProvider>
+        <Analytics />
       </body>
     </html>
   );
