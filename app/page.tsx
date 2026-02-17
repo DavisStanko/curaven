@@ -16,7 +16,7 @@ export default function Home() {
 
         {/* Header */}
         <header className="w-full flex items-center justify-between p-4 border-b border-white/5 bg-black/20 backdrop-blur sticky top-0 z-10">
-          <h1 className="text-xl font-bold tracking-tight text-white font-sans">Curaven</h1>
+          <h1 className="text-xl font-bold tracking-tight text-white font-sans">cuRaven</h1>
           <div className="flex items-center space-x-2">
             {user ? (
               <>
