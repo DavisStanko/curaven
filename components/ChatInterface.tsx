@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
 import { Loader2 } from "lucide-react";
 import { Lock } from "lucide-react";
-import { format } from "date-fns";
+
 import { toast } from "sonner";
 
 type Message = {
@@ -114,20 +114,17 @@ export function ChatInterface() {
           {messages.map((msg) => (
             <div
               key={msg.id}
-              className="flex items-baseline gap-2 rounded-sm px-2 py-1 text-base leading-relaxed font-mono hover:bg-white/5"
+              className="rounded-sm px-2 py-0.5 text-base leading-relaxed font-mono hover:bg-white/5 break-words"
             >
-              <span className="w-20 shrink-0 select-none text-right text-sm tabular-nums text-white/40">
-                {format(new Date(msg.created_at), "h:mm a").toLowerCase()}
-              </span>
               <span
-                className="shrink-0 font-bold"
+                className="font-bold mr-2"
                 style={{
                   color: stringToColor(msg.profiles?.username || "Unknown"),
                 }}
               >
                 {msg.profiles?.username || "Unknown"}:
               </span>
-              <p className="wrap-break-word text-white/90">{msg.content}</p>
+              <span className="text-white/90">{msg.content}</span>
             </div>
           ))}
         </div>
@@ -144,6 +141,7 @@ export function ChatInterface() {
               onChange={(e) => setNewMessage(e.target.value)}
               placeholder={`Message #${user.user_metadata.username || "general"}`}
               disabled={isSending}
+              maxLength={1000}
               className="h-9 flex-1 rounded-sm border-white/15 bg-transparent text-zinc-100 placeholder:text-zinc-400 focus-visible:ring-0 focus-visible:ring-offset-0"
             />
             <Button
