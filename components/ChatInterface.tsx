@@ -7,7 +7,9 @@ import { MessageBubble } from '@/components/MessageBubble'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Send, Loader2, Lock } from 'lucide-react'
+import { Send } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
+import { Lock } from 'lucide-react'
 import { toast } from 'sonner'
 
 type Message = {

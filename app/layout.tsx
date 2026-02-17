@@ -4,12 +4,16 @@ import './globals.css'
 import { AuthProvider } from '@/components/AuthProvider'
 import { Toaster } from '@/components/ui/sonner'
 import { cn } from '@/lib/utils'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Curaven - Carleton Chat',
   description: 'Real-time chat for Carleton University students',
+  icons: {
+    icon: '/icon.png',
+  },
 }
 
 export default function RootLayout({
@@ -27,6 +31,7 @@ export default function RootLayout({
         <AuthProvider>
           {children}
           <Toaster />
+          <Analytics />
         </AuthProvider>
       </body>
     </html>
