@@ -156,7 +156,7 @@ export function ChatInterface() {
               onChange={(e) => setNewMessage(e.target.value)}
               placeholder={`Message #${user.user_metadata.username || "general"}`}
               disabled={isSending}
-              maxLength={1000}
+              maxLength={280}
               className="h-9 flex-1 rounded-sm border-white/15 bg-transparent text-zinc-100 placeholder:text-zinc-400 focus-visible:ring-0 focus-visible:ring-offset-0"
             />
             <Button
