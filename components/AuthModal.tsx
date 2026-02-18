@@ -67,6 +67,20 @@ export function AuthModal() {
     },
   })
 
+  const handleAuthError = (error: any) => {
+    const message = error?.message?.toLowerCase() || ''
+    if (
+      message.includes('rate limit') || 
+      message.includes('too many requests') || 
+      message.includes('limit exceeded') ||
+      error?.status === 429
+    ) {
+      toast.error("Daily signup limit reached. Resetting at midnight.")
+    } else {
+      toast.error(error.message)
+    }
+  }
+
   async function onLogin(values: z.infer<typeof authSchema>) {
     setIsLoading(true)
     const { error } = await supabase.auth.signInWithPassword({
@@ -75,7 +89,7 @@ export function AuthModal() {
     })
 
     if (error) {
-      toast.error(error.message)
+      handleAuthError(error)
     } else {
       toast.success('Successfully logged in')
       setIsOpen(false)
@@ -110,7 +124,7 @@ export function AuthModal() {
     })
 
     if (error) {
-      toast.error(error.message)
+      handleAuthError(error)
     } else {
       toast.success('Check your email to confirm your account')
       setIsOpen(false)
@@ -130,12 +144,37 @@ export function AuthModal() {
           redirectTo: `${window.location.origin}/auth/callback?next=/reset-password`,
       })
       if (error) {
-          toast.error(error.message)
+          handleAuthError(error)
       } else {
           toast.success("Password reset email sent")
       }
       setIsLoading(false)
 
+  }
+
+
+  async function onResendConfirmation() {
+    const email = loginForm.getValues('email')
+    if (!email || !CARLETON_EMAIL_REGEX.test(email)) {
+        toast.error("Please enter a valid Carleton email in the login tab first")
+        return
+    }
+
+    setIsLoading(true)
+    const { error } = await supabase.auth.resend({
+      type: 'signup',
+      email: email,
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/callback`
+      }
+    })
+    
+    if (error) {
+      handleAuthError(error)
+    } else {
+      toast.success("Verification email sent")
+    }
+    setIsLoading(false)
   }
 
   return (
@@ -184,11 +223,16 @@ export function AuthModal() {
                     </FormItem>
                   )}
                 />
-                <div className="flex justify-between items-center">
-                    <Button variant="link" className="px-0" type="button" onClick={onResetPassword}>
-                        Forgot password?
-                    </Button>
-                    <Button type="submit" disabled={isLoading}>
+                <div className="flex flex-col gap-4">
+                    <div className="flex justify-between items-center">
+                        <Button variant="link" className="px-0 h-auto text-xs text-muted-foreground" type="button" onClick={onResetPassword}>
+                            Forgot password?
+                        </Button>
+                        <Button variant="link" className="px-0 h-auto text-xs text-muted-foreground" type="button" onClick={onResendConfirmation}>
+                            Resend verification?
+                        </Button>
+                    </div>
+                    <Button type="submit" className="w-full" disabled={isLoading}>
                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     Login
                     </Button>
