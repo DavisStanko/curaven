@@ -2,6 +2,8 @@
 
 A live chat for Carleton University. Anyone can watch the conversation but only students with a valid Carleton email can post.
 
+![cuRaven screenshot](demo.png)
+
 ## How to use
 
 Sign in with your Carleton email to post messages. No account is needed to read the chat.
