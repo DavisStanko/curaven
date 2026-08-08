@@ -1,14 +1,15 @@
 # cuRaven
 
-A live chat for Carleton University. Anyone can watch the conversation, but only students with a valid Carleton email can post.
+A live chat for Carleton University. Anyone can watch the conversation but only students with a valid Carleton email can post.
 
-## Features
+## How to use
 
-- **Carleton-only posting** — sign in with your Carleton email to send messages; anyone can read without an account.
-- **Real-time messaging** — messages appear instantly for all users via WebSockets.
-- **Persistent history** — chat history is stored in Supabase and loaded on arrival.
+Sign in with your Carleton email to post messages. No account is needed to read the chat.
+
+## How it works
+
+Messages send and appear through WebSockets. This makes new messages appear instantly for all users. Chat history saves in Supabase. 
 
 ## License
 
-This project is licensed under the [GPL-3.0](LICENSE.md)
-GNU General Public License — see the [LICENSE.md](LICENSE.md) file for details.
+This project uses the GPL-3.0 license. See the [LICENSE.md](LICENSE.md) file for details.
