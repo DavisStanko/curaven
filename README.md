@@ -2,7 +2,9 @@
 
 A live chat for Carleton University. Anyone can watch the conversation but only students with a valid Carleton email can post.
 
-![cuRaven screenshot](demo.png)
+<p align="center">
+  <img src="demo.png" alt="cuRaven screenshot" />
+</p>
 
 ## How to use
 
